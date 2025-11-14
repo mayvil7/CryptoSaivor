@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Glass Crypto Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Autour+One&family=Inter:wght@400;500;700&family=Jua&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Конфиг Tailwind для кастомных шрифтов
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'jua': ['Jua', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'autour': ['Autour One', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-white min-h-screen p-6 md:p-10 flex justify-center items-center original-bg font-inter">
+
+    <main class="w-full max-w-[1080px] relative">
+        <div class="glass-card grad-neutral inline-flex items-center px-2 py-2 mb-4">
+            <img src="logo.png" alt="Logo" class="w-10 h-10 rounded-full mr-3 opacity-90">
+             <span class="text-[#9D9D9D] font-jua text-2xl pr-6 pt-1">t.me/cryptosavior</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <div class="glass-card grad-pepe h-[192px] flex items-center p-6 relative group">
+                <div class="w-[45%] h-full relative">
+                    <img src="https://cdn.changes.tg/gifts/originals/5936013938331222567/Original.png" class="img-pepe object-contain drop-shadow-2xl transform rotate-6 group-hover:rotate-12 transition-transform duration-500" alt="Pepe">
+                </div>
+                <div class="w-[55%] flex flex-col items-end justify-center h-full">
+                    <span class="text-[#707070] font-jua text-xl mb-auto pt-2">Floor price</span>
+                    <div class="flex items-baseline -mb-1">
+                        <span class="text-[#707070] font-autour text-4xl mr-2">$</span>
+                        <span id="price-pepe-usdt" class="font-inter font-bold text-[54px] leading-tight pulse-loader">...</span>
+                    </div>
+                    <div class="flex items-center justify-end w-full text-[#707070] space-x-2 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 text-[#707070] mt-1"><title>Ton SVG Icon</title><path fill="currentColor" d="M19.012 9.201L12.66 19.316a.857.857 0 0 1-1.453-.005L4.98 9.197a1.8 1.8 0 0 1-.266-.943a1.856 1.856 0 0 1 1.882-1.826h10.817c1.033 0 1.873.815 1.873 1.822a1.8 1.8 0 0 1-.274.951M6.51 8.863l4.633 7.144V8.143H6.994c-.48 0-.694.317-.484.72m6.347 7.144l4.633-7.144c.214-.403-.004-.72-.484-.72h-4.149z"/></svg>
+                        <span id="price-pepe-ton" class="font-inter font-bold text-3xl text-white pulse-loader">...</span>
+                    </div>
+                    <span id="market-pepe" class="text-[#707070] font-jua text-2xl">GETGEMS</span>
+                </div>
+            </div>
+
+            <div class="glass-card grad-moon h-[192px] flex items-center p-6 relative group">
+                 <div class="w-[45%] h-full relative">
+                    <img src="https://cdn.changes.tg/gifts/originals/5868455043362980631/Original.png" class="img-moon object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500" alt="Moon">
+                </div>
+                <div class="w-[55%] flex flex-col items-end justify-center h-full">
+                    <span class="text-[#707070] font-jua text-xl mb-auto pt-2">Floor price</span>
+                    <div class="flex items-baseline -mb-1">
+                        <span class="text-[#707070] font-autour text-4xl mr-2">$</span>
+                        <span id="price-moon-usdt" class="font-inter font-bold text-[54px] leading-tight pulse-loader">...</span>
+                    </div>
+                    <div class="flex items-center justify-end w-full text-[#707070] space-x-2 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 text-[#707070] mt-1"><title>Ton SVG Icon</title><path fill="currentColor" d="M19.012 9.201L12.66 19.316a.857.857 0 0 1-1.453-.005L4.98 9.197a1.8 1.8 0 0 1-.266-.943a1.856 1.856 0 0 1 1.882-1.826h10.817c1.033 0 1.873.815 1.873 1.822a1.8 1.8 0 0 1-.274.951M6.51 8.863l4.633 7.144V8.143H6.994c-.48 0-.694.317-.484.72m6.347 7.144l4.633-7.144c.214-.403-.004-.72-.484-.72h-4.149z"/></svg>
+                        <span id="price-moon-ton" class="font-inter font-bold text-3xl text-white pulse-loader">...</span>
+                    </div>
+                    <span id="market-moon" class="text-[#707070] font-jua text-2xl">GETGEMS</span>
+                </div>
+            </div>
+
+             <div class="glass-card grad-cap h-[192px] flex items-center p-6 relative group">
+                <div class="w-[45%] h-full relative">
+                   <img src="https://cdn.changes.tg/gifts/originals/5915521180483191380/Original.png" class="img-cap object-contain drop-shadow-2xl group-hover:-translate-y-2 transition-transform duration-500" alt="Cap">
+               </div>
+               <div class="w-[55%] flex flex-col items-end justify-center h-full">
+                   <span class="text-[#707070] font-jua text-xl mb-auto pt-2">Floor price</span>
+                   <div class="flex items-baseline -mb-1">
+                       <span class="text-[#707070] font-autour text-4xl mr-2">$</span>
+                       <span id="price-cap-usdt" class="font-inter font-bold text-[54px] leading-tight pulse-loader">...</span>
+                   </div>
+                   <div class="flex items-center justify-end w-full text-[#707070] space-x-2 mb-1">
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 text-[#707070] mt-1"><title>Ton SVG Icon</title><path fill="currentColor" d="M19.012 9.201L12.66 19.316a.857.857 0 0 1-1.453-.005L4.98 9.197a1.8 1.8 0 0 1-.266-.943a1.856 1.856 0 0 1 1.882-1.826h10.817c1.033 0 1.873.815 1.873 1.822a1.8 1.8 0 0 1-.274.951M6.51 8.863l4.633 7.144V8.143H6.994c-.48 0-.694.317-.484.72m6.347 7.144l4.633-7.144c.214-.403-.004-.72-.484-.72h-4.149z"/></svg>
+                       <span id="price-cap-ton" class="font-inter font-bold text-3xl text-white pulse-loader">...</span>
+                   </div>
+                   <span id="market-cap" class="text-[#707070] font-jua text-2xl">GETGEMS</span>
+               </div>
+           </div>
+
+           <div class="glass-card grad-plum h-[192px] flex items-center p-6 relative group">
+                <div class="w-[45%] h-full relative">
+                    <img src="https://cdn.changes.tg/gifts/originals/5933671725160989227/Original.png" class="img-plum object-contain drop-shadow-2xl group-hover:rotate-6 transition-transform duration-500" alt="Plum">
+                </div>
+                <div class="w-[55%] flex flex-col items-end justify-center h-full">
+                    <span class="text-[#707070] font-jua text-xl mb-auto pt-2">Floor price</span>
+                    <div class="flex items-baseline -mb-1">
+                        <span class="text-[#707070] font-autour text-4xl mr-2">$</span>
+                        <span id="price-plum-usdt" class="font-inter font-bold text-[54px] leading-tight pulse-loader">...</span>
+                    </div>
+                    <div class="flex items-center justify-end w-full text-[#707070] space-x-2 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 text-[#707070] mt-1"><title>Ton SVG Icon</title><path fill="currentColor" d="M19.012 9.201L12.66 19.316a.857.857 0 0 1-1.453-.005L4.98 9.197a1.8 1.8 0 0 1-.266-.943a1.856 1.856 0 0 1 1.882-1.826h10.817c1.033 0 1.873.815 1.873 1.822a1.8 1.8 0 0 1-.274.951M6.51 8.863l4.633 7.144V8.143H6.994c-.48 0-.694.317-.484.72m6.347 7.144l4.633-7.144c.214-.403-.004-.72-.484-.72h-4.149z"/></svg>
+                        <span id="price-plum-ton" class="font-inter font-bold text-3xl text-white pulse-loader">...</span>
+                    </div>
+                    <span id="market-plum" class="text-[#707070] font-jua text-2xl">GETGEMS</span>
+                </div>
+            </div>
+
+            <div class="glass-card grad-spartan h-[192px] flex items-center p-6 relative group">
+                <div class="w-[45%] h-full relative">
+                    <img src="https://cdn.changes.tg/gifts/originals/5895328365971244193/Original.png" class="img-spartan object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500" alt="Spartan">
+                </div>
+                <div class="w-[55%] flex flex-col items-end justify-center h-full">
+                    <span class="text-[#707070] font-jua text-xl mb-auto pt-2">Floor price</span>
+                    <div class="flex items-baseline -mb-1">
+                        <span class="text-[#707070] font-autour text-4xl mr-2">$</span>
+                        <span id="price-spartan-usdt" class="font-inter font-bold text-[54px] leading-tight pulse-loader">...</span>
+                    </div>
+                    <div class="flex items-center justify-end w-full text-[#707070] space-x-2 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 text-[#707070] mt-1"><title>Ton SVG Icon</title><path fill="currentColor" d="M19.012 9.201L12.66 19.316a.857.857 0 0 1-1.453-.005L4.98 9.197a1.8 1.8 0 0 1-.266-.943a1.856 1.856 0 0 1 1.882-1.826h10.817c1.033 0 1.873.815 1.873 1.822a1.8 1.8 0 0 1-.274.951M6.51 8.863l4.633 7.144V8.143H6.994c-.48 0-.694.317-.484.72m6.347 7.144l4.633-7.144c.214-.403-.004-.72-.484-.72h-4.149z"/></svg>
+                        <span id="price-spartan-ton" class="font-inter font-bold text-3xl text-white pulse-loader">...</span>
+                    </div>
+                    <span id="market-spartan" class="text-[#707070] font-jua text-2xl">GETGEMS</span>
+                </div>
+            </div>
+
+            <div class="glass-card grad-gold h-[192px] flex items-center p-6 relative group">
+                <div class="w-[45%] h-full relative">
+                    <img src="https://cdn.changes.tg/gifts/originals/5895518353849582541/Original.png" class="img-gold object-contain drop-shadow-2xl group-hover:-rotate-6 transition-transform duration-500" alt="Gold">
+                </div>
+                <div class="w-[55%] flex flex-col items-end justify-center h-full">
+                    <span class="text-[#707070] font-jua text-xl mb-auto pt-2">Floor price</span>
+                    <div class="flex items-baseline -mb-1">
+                        <span class="text-[#707070] font-autour text-4xl mr-2">$</span>
+                        <span id="price-gold-usdt" class="font-inter font-bold text-[54px] leading-tight pulse-loader">...</span>
+                    </div>
+                    <div class="flex items-center justify-end w-full text-[#707070] space-x-2 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 text-[#707070] mt-1"><title>Ton SVG Icon</title><path fill="currentColor" d="M19.012 9.201L12.66 19.316a.857.857 0 0 1-1.453-.005L4.98 9.197a1.8 1.8 0 0 1-.266-.943a1.856 1.856 0 0 1 1.882-1.826h10.817c1.033 0 1.873.815 1.873 1.822a1.8 1.8 0 0 1-.274.951M6.51 8.863l4.633 7.144V8.143H6.994c-.48 0-.694.317-.484.72m6.347 7.144l4.633-7.144c.214-.403-.004-.72-.484-.72h-4.149z"/></svg>
+                        <span id="price-gold-ton" class="font-inter font-bold text-3xl text-white pulse-loader">...</span>
+                    </div>
+                    <span id="market-gold" class="text-[#707070] font-jua text-2xl">GETGEMS</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-[725px_minmax(0,1fr)] gap-4">
+                <div class="glass-card grad-chart h-[293px] p-8 relative flex flex-col overflow-hidden">
+                    <div class="flex justify-between items-start mb-2 z-20 relative">
+                        <span class="font-jua text-white text-[40px] leading-none">TON/USDT</span>
+                        <div class="text-right">
+                            <div id="ton-price-usdt" class="font-inter font-bold text-white text-[40px] leading-none mb-1 pulse-loader">...</div>
+                            <div id="ton-change-percent" class="font-inter font-bold text-2xl pulse-loader">...</div>
+                        </div>
+                    </div>
+                    <div class="flex-grow relative flex items-center">
+                        <div id="chart-labels" class="flex flex-col justify-between h-[80%] text-[#A1A1A1] text-sm font-inter font-medium mr-4 z-10 w-10 text-right pb-2">
+                        </div>
+                        <div class="flex-grow h-[80%] relative z-10 pb-2">
+                            <div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-2 opacity-20 z-0">
+                                <div class="w-full h-px bg-[#A1A1A1]"></div>
+                                <div class="w-full h-px bg-[#A1A1A1]"></div>
+                                <div class="w-full h-px bg-[#A1A1A1]"></div>
+                                <div class="w-full h-px bg-[#A1A1A1]"></div>
+                                <div class="w-full h-px bg-[#A1A1A1]"></div>
+                            </div>
+                            <svg id="chart-svg" viewBox="0 0 600 170" class="w-full h-full" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+                                        <stop id="grad-stop-1" offset="0%" stop-color="#00B84B" stop-opacity="0.3"/>
+                                        <stop id="grad-stop-2" offset="100%" stop-color="#00B84B" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+                                <path id="chart-fill" d="" fill="url(#chartGradient)"/>
+                                <path id="chart-line" d="" stroke="#00B84B" stroke-width="4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card grad-neutral h-[293px] flex flex-col items-center justify-center">
+                    <span id="current-month" class="font-autour text-white text-5xl mb-6 opacity-90 pt-8 uppercase">...</span>
+                    <span id="current-day" class="font-inter font-bold text-white text-[96px] leading-none pb-8">...</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
